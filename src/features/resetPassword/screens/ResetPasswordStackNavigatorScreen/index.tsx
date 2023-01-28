@@ -1,0 +1,1 @@
+export { ResetPasswordStackNavigatorScreen } from './ResetPasswordStackNavigatorScreen';

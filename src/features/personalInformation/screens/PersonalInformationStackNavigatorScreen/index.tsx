@@ -1,0 +1,1 @@
+export { PersonalInformationStackNavigatorScreen } from './PersonalInformationStackNavigatorScreen';

@@ -1,0 +1,1 @@
+export { LinkAccountStackNavigatorScreen } from './LinkAccountStackNavigatorScreen';
