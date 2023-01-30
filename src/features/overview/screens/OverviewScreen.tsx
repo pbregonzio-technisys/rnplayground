@@ -47,7 +47,9 @@ const NotificationActionIcon = () => {
     <TouchableOpacity
       style={styles.actionButton}
       onPress={() =>
-        navigate(PRIVATE_STACK_NAVIGATOR_SCREENS.NotificationsScreen.name)
+        navigate(
+          PRIVATE_STACK_NAVIGATOR_SCREENS.NotificationsScreen.name as any
+        )
       }>
       <Icon name="bell" color="white" />
     </TouchableOpacity>

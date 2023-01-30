@@ -12,7 +12,7 @@ export const ProfileMenu = () => {
         onPress={() =>
           navigate(
             PRIVATE_STACK_NAVIGATOR_SCREENS
-              .PersonalInformationStackNavigatorScreen.name
+              .PersonalInformationStackNavigatorScreen.name as any
           )
         }>
         Personal Information
@@ -21,7 +21,7 @@ export const ProfileMenu = () => {
         onPress={() =>
           navigate(
             PRIVATE_STACK_NAVIGATOR_SCREENS.ChangePasswordStackNavigatorScreen
-              .name
+              .name as any
           )
         }>
         Change Password

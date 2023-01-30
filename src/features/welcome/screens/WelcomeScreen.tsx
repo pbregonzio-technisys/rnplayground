@@ -36,7 +36,8 @@ const LogInButton = () => {
       onPress={() => {
         setIsAuthenticated(true);
         setTimeout(
-          () => navigate(BOTTOM_TABS_NAVIGATOR_SCREENS.OverviewScreen.name),
+          () =>
+            navigate(BOTTOM_TABS_NAVIGATOR_SCREENS.OverviewScreen.name as any),
           300
         );
       }}>
@@ -51,7 +52,8 @@ const ResetPasswordButton = () => {
     <Button
       onPress={() => {
         navigate(
-          PUBLIC_STACK_NAVIGATOR_SCREENS.ResetPasswordStackNavigatorScreen.name
+          PUBLIC_STACK_NAVIGATOR_SCREENS.ResetPasswordStackNavigatorScreen
+            .name as any
         );
       }}>
       Reset Password

@@ -12,7 +12,7 @@ export const NavigationDemo = () => {
     <>
       <Button
         onPress={() =>
-          navigate(PRIVATE_STACK_NAVIGATOR_SCREENS.FeedbackScreen.name)
+          navigate(PRIVATE_STACK_NAVIGATOR_SCREENS.FeedbackScreen.name as any)
         }>
         Go to Feedback screen
       </Button>
@@ -20,19 +20,21 @@ export const NavigationDemo = () => {
 
       <Button
         onPress={() =>
-          navigate(PRIVATE_STACK_NAVIGATOR_SCREENS.NotificationsScreen.name)
+          navigate(
+            PRIVATE_STACK_NAVIGATOR_SCREENS.NotificationsScreen.name as any
+          )
         }>
         Go to Navigation
       </Button>
       <Button
         onPress={() =>
-          navigate(BOTTOM_TABS_NAVIGATOR_SCREENS.OverviewScreen.name)
+          navigate(BOTTOM_TABS_NAVIGATOR_SCREENS.OverviewScreen.name as any)
         }>
         Go to Overview
       </Button>
       <Button
         onPress={() =>
-          navigate(BOTTOM_TABS_NAVIGATOR_SCREENS.AccountsScreen.name, {
+          navigate(BOTTOM_TABS_NAVIGATOR_SCREENS.AccountsScreen.name as any, {
             accountId: 21,
           })
         }>
