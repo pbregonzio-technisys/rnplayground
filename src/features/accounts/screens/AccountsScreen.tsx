@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import { ScreenContainer } from '../../../components/ScreenContainer';
 import { Icon } from '../../../components/Icon';
@@ -16,10 +16,9 @@ export const AccountsScreen = ({
   const { params } = route;
 
   return (
-    <ScreenContainer
-      name={`Accounts screen ${params?.accountId || ''}`}
-      statusBarScheme="light"
-    />
+    <ScreenContainer statusBarScheme="light">
+      <Text>{params?.accountId || ''}</Text>
+    </ScreenContainer>
   );
 };
 
@@ -30,7 +29,7 @@ AccountsScreen.options = {
   tabBarLabel: 'Accounts',
   headerRight: () => (
     <TouchableOpacity
-      style={{ marginRight: 24, padding: 8 }}
+      style={styles.actionButton}
       accessibilityLabel="More actions">
       <Icon name="vertical-ellipsis" />
     </TouchableOpacity>
@@ -47,3 +46,7 @@ type AccountsScreenParams = {
 export type AccountsScreenParamsType = {
   AccountsScreen: AccountsScreenParams | undefined;
 };
+
+const styles = StyleSheet.create({
+  actionButton: { marginRight: 24, padding: 8 },
+});

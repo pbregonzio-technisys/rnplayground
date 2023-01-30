@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '../../../components/Icon';
 import { SafeContent } from '../../../components/SafeContent';
 import { ScreenContainer } from '../../../components/ScreenContainer';
+import { PRIVATE_STACK_NAVIGATOR_SCREENS } from '../../../constants/navigation/privateStack';
 import {
   colorfulHeaderProps,
   tabBarProps,
@@ -44,9 +45,15 @@ const NotificationActionIcon = () => {
   const { navigate } = useNavigation();
   return (
     <TouchableOpacity
-      style={{ marginRight: 16, padding: 8 }}
-      onPress={() => navigate('NotificationsScreen')}>
+      style={styles.actionButton}
+      onPress={() =>
+        navigate(PRIVATE_STACK_NAVIGATOR_SCREENS.NotificationsScreen.name)
+      }>
       <Icon name="bell" color="white" />
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  actionButton: { marginRight: 16, padding: 8 },
+});

@@ -3,6 +3,8 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button } from '../../../components/Button';
 import { ScreenContainer } from '../../../components/ScreenContainer';
+import { BOTTOM_TABS_NAVIGATOR_SCREENS } from '../../../constants/navigation/bottomTab';
+import { PUBLIC_STACK_NAVIGATOR_SCREENS } from '../../../constants/navigation/publicStack';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 export const WelcomeScreen = () => {
@@ -33,7 +35,10 @@ const LogInButton = () => {
     <Button
       onPress={() => {
         setIsAuthenticated(true);
-        setTimeout(() => navigate('PrivateStackNavigatorScreen'), 300);
+        setTimeout(
+          () => navigate(BOTTOM_TABS_NAVIGATOR_SCREENS.OverviewScreen.name),
+          300
+        );
       }}>
       Log In
     </Button>
@@ -45,7 +50,9 @@ const ResetPasswordButton = () => {
   return (
     <Button
       onPress={() => {
-        navigate('ResetPasswordStackNavigatorScreen');
+        navigate(
+          PUBLIC_STACK_NAVIGATOR_SCREENS.ResetPasswordStackNavigatorScreen.name
+        );
       }}>
       Reset Password
     </Button>

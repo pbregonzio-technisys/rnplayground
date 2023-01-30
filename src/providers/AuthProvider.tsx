@@ -10,7 +10,9 @@ export const AuthContext = createContext<AuthContextProps>({
   setIsAuthenticated: () => {},
 });
 
-export const AuthProvider: React.FC = ({ children }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
