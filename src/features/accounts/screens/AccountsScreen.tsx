@@ -31,7 +31,7 @@ AccountsScreen.options = {
     <TouchableOpacity
       style={styles.actionButton}
       accessibilityLabel="More actions">
-      <Icon name="vertical-ellipsis" />
+      <Icon name="vertical-ellipsis" color="white" />
     </TouchableOpacity>
   ),
   tabBarIcon: ({ focused }: { focused: boolean }) => (
