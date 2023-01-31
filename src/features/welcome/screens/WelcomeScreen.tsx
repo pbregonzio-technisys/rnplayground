@@ -10,7 +10,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 export const WelcomeScreen = () => {
   return (
     <ScreenContainer name="Welcome screen" statusBarScheme="dark">
-      <View style={styles.screenView}>
+      <View style={styles.screenView} testID="welcome">
         <LogInButton />
         <ResetPasswordButton />
       </View>
