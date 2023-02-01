@@ -27,7 +27,7 @@ const getGlyph = {
   wallet: WalletIcon,
 };
 
-type IconProps = {
+export type IconProps = {
   name: keyof typeof getGlyph;
 } & SvgProps;
 

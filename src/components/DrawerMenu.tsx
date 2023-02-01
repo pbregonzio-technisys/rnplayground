@@ -3,6 +3,7 @@ import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { View, Text, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSafeAreaInsets, EdgeInsets } from 'react-native-safe-area-context';
+import { SvgProps } from 'react-native-svg';
 
 import {
   BOTTOM_TABS_NAVIGATOR_SCREEN_NAMES,
@@ -15,8 +16,21 @@ import {
 import { AuthContext } from '../providers/AuthProvider';
 import { Icon } from '../components/Icon';
 
-export const DrawerMenu = (props: any) => {
+const LogOutIcon = (props: SvgProps) => <Icon name="log-out" {...props} />;
+
+const LogOutMenuItem = () => {
   const { setIsAuthenticated } = React.useContext(AuthContext);
+  return (
+    <DrawerItem
+      labelStyle={styles.drawerItemLabel}
+      icon={LogOutIcon}
+      label="Log out"
+      onPress={() => setIsAuthenticated(false)}
+    />
+  );
+};
+
+export const DrawerMenu = (props: any) => {
   const insets = useSafeAreaInsets();
   const styles = makeStyles(insets);
 
@@ -62,12 +76,7 @@ export const DrawerMenu = (props: any) => {
         ))}
       </View>
       <View style={styles.drawerInnerView}>
-        <DrawerItem
-          labelStyle={styles.drawerItemLabel}
-          icon={(props) => <Icon name="log-out" {...props} />}
-          label="Log out"
-          onPress={() => setIsAuthenticated(false)}
-        />
+        <LogOutMenuItem />
       </View>
     </DrawerContentScrollView>
   );
@@ -104,5 +113,6 @@ const ColorfulLinearGradient = (props: any) => {
 };
 
 const styles = StyleSheet.create({
+  drawerItemLabel: { fontSize: 16 },
   linearGradient: { flex: 1 },
 });
