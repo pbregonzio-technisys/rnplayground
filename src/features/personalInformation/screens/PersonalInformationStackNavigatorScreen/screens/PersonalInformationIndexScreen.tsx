@@ -20,13 +20,8 @@ export const PersonalInformationIndexScreen = () => {
           paddingBottom: 24,
           // paddingBottom: 24 + insets.bottom,
         }}>
-        <Text style={{ fontSize: 20, marginBottom: 12 }}>
-          Insets should be used only to set a padding with the device boundaries
-        </Text>
         <Text>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum
-          perferendis error assumenda quod aperiam, autem accusantium. Eius
-          illo, est cum quod, enim aliquid doloribus ea inventore fugit
+          Insets should be used only to set a padding with the device boundaries
         </Text>
       </SafeContent>
       <SafeContent
