@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
+
 import { FocusAwareStatusBar } from './FocusAwareStatusBar';
 
 export const ScreenContainer = ({ statusBarScheme, children }: any) => {

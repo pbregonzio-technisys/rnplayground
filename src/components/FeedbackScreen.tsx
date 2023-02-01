@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ScreenContainer } from './ScreenContainer';
 import { simpleHeaderProps } from '../constants/navigation/utils';
+import { ScreenContainer } from './ScreenContainer';
 
 export const FeedbackScreen = () => (
   <ScreenContainer name="Feedback screen" statusBarScheme="dark" />

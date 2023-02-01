@@ -5,9 +5,9 @@ import {
   HeaderStyleInterpolators,
 } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Text } from 'react-native';
+
 import { DrawerMenu } from './DrawerMenu';
 import {
   BOTTOM_TABS_NAVIGATOR_SCREEN_NAMES,
@@ -29,9 +29,7 @@ import {
   PRIVATE_STACK_NAVIGATOR_SCREENS,
   PrivateStackNavigatorParams,
 } from '../constants/navigation/privateStack';
-
 import { AuthContext } from '../providers/AuthProvider';
-
 import WelcomeScreen from '../features/welcome/screens/WelcomeScreen';
 
 const Stack = createStackNavigator<

@@ -1,7 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { Icon } from '../../../components/Icon';
 import { SafeContent } from '../../../components/SafeContent';
 import { ScreenContainer } from '../../../components/ScreenContainer';

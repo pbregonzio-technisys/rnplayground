@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { ListItem } from '../../../../components/ListItem';
 import { StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+import { ListItem } from '../../../../components/ListItem';
 import { PRIVATE_STACK_NAVIGATOR_SCREENS } from '../../../../constants/navigation/privateStack';
 
 export const ProfileMenu = () => {

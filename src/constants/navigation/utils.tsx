@@ -1,10 +1,10 @@
-/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+
 import { Icon } from '../../components/Icon';
 
 export const tabBarProps = {
@@ -27,7 +27,7 @@ export const tabBarProps = {
 const ColorfulLinearGradient = ({ ...props }) => {
   return (
     <LinearGradient
-      style={{ flex: 1 }}
+      style={globalStyles.linearGradient}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
       colors={['#AD0E71', '#E36414']}
@@ -50,7 +50,7 @@ const DrawerTrigger = () => {
   const { toggleDrawer } = useNavigation<any>();
   return (
     <TouchableOpacity
-      style={{ marginLeft: 16, padding: 8 }}
+      style={globalStyles.drawerTrigger}
       onPress={toggleDrawer}
       accessibilityLabel="Menu">
       <Icon name="menu" color="white" />
@@ -69,10 +69,10 @@ function SimpleHeader({ route, options }: any) {
 
   return (
     <View style={styles.root}>
-      <View style={{ marginBottom: 8 }}>
-        <CloseStack />
+      <View style={globalStyles.closeActionWrapper}>
+        <CloseAction />
       </View>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={globalStyles.titleWrapper}>
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>{title}</Text>
         </View>
@@ -81,11 +81,11 @@ function SimpleHeader({ route, options }: any) {
   );
 }
 
-const CloseStack = () => {
+const CloseAction = () => {
   const { canGoBack, goBack } = useNavigation();
 
   return canGoBack() ? (
-    <TouchableOpacity style={{ padding: 8, marginLeft: 16 }} onPress={goBack}>
+    <TouchableOpacity style={globalStyles.closeAction} onPress={goBack}>
       <Icon name="left-arrow" color="#3b3b3b" />
     </TouchableOpacity>
   ) : (
@@ -108,3 +108,11 @@ const makeStyles = (top: number) =>
       paddingBottom: 12,
     },
   });
+
+const globalStyles = StyleSheet.create({
+  linearGradient: { flex: 1 },
+  closeAction: { padding: 8, marginLeft: 16 },
+  closeActionWrapper: { marginBottom: 8 },
+  drawerTrigger: { padding: 8, marginLeft: 16 },
+  titleWrapper: { flexDirection: 'row' },
+});

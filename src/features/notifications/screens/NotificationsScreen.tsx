@@ -1,6 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import { ScreenContainer } from '../../../components/ScreenContainer';
 import {
   colorfulHeaderProps,

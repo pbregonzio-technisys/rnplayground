@@ -1,6 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
+
 import { Button } from '../../../components/Button';
 import { ScreenContainer } from '../../../components/ScreenContainer';
 import { BOTTOM_TABS_NAVIGATOR_SCREENS } from '../../../constants/navigation/bottomTab';

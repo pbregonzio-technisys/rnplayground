@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import {
   LINK_ACCOUNT_STACK_NAVIGATOR_SCREEN_NAMES,
   LINK_ACCOUNT_STACK_NAVIGATOR_SCREENS,

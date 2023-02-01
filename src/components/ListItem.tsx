@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+
 import { Icon } from '../components/Icon';
 
 export const ListItem = ({ onPress, children }: any) => (
