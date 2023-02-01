@@ -16,6 +16,7 @@ export const Button = ({
   children: React.ReactNode;
   onPress: any;
 }) => {
+  const [pressed, setPressed] = React.useState(false);
   const progress = useSharedValue(0);
 
   const animationStyles = useAnimatedStyle(() => {
@@ -28,17 +29,15 @@ export const Button = ({
     return { backgroundColor };
   });
 
-  const [pressed, setPressed] = React.useState(false);
-
   React.useEffect(() => {
-    if (pressed) {
-      progress.value = withTiming(1, {
-        duration: 150,
+    if (!pressed) {
+      progress.value = withTiming(0, {
+        duration: 200,
         easing: Easing.ease,
       });
     } else {
-      progress.value = withTiming(0, {
-        duration: 200,
+      progress.value = withTiming(1, {
+        duration: 150,
         easing: Easing.ease,
       });
     }
