@@ -30,7 +30,7 @@ export const DrawerMenu = (props: any) => {
           <DrawerItem
             key={name}
             icon={BOTTOM_TABS_NAVIGATOR_SCREENS[name].options.tabBarIcon}
-            labelStyle={{ fontSize: 16 }}
+            labelStyle={styles.drawerItemLabel}
             label={
               BOTTOM_TABS_NAVIGATOR_SCREENS[name].options.tabBarLabel ||
               BOTTOM_TABS_NAVIGATOR_SCREENS[name].options.title ||
@@ -46,7 +46,7 @@ export const DrawerMenu = (props: any) => {
         ))}
         {DRAWER_NAVIGATOR_SCREEN_NAMES.map((name) => (
           <DrawerItem
-            labelStyle={{ fontSize: 16 }}
+            labelStyle={styles.drawerItemLabel}
             key={name}
             icon={DRAWER_NAVIGATOR_SCREENS[name].options.drawerIcon}
             label={
@@ -63,7 +63,7 @@ export const DrawerMenu = (props: any) => {
       </View>
       <View style={styles.drawerInnerView}>
         <DrawerItem
-          labelStyle={{ fontSize: 16 }}
+          labelStyle={styles.drawerItemLabel}
           icon={(props) => <Icon name="log-out" {...props} />}
           label="Log out"
           onPress={() => setIsAuthenticated(false)}
@@ -88,13 +88,13 @@ const makeStyles = (insets: EdgeInsets) =>
       paddingVertical: 16,
       flex: 1,
     },
+    drawerItemLabel: { fontSize: 16 },
   });
 
 const ColorfulLinearGradient = (props: any) => {
   return (
     <LinearGradient
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{ flex: 1 }}
+      style={styles.linearGradient}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
       colors={['#AD0E71', '#d14833']}
@@ -102,3 +102,7 @@ const ColorfulLinearGradient = (props: any) => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  linearGradient: { flex: 1 },
+});

@@ -4,7 +4,7 @@ import { Icon } from '../components/Icon';
 
 export const ListItem = ({ onPress, children }: any) => (
   <TouchableOpacity style={styles.button} onPress={onPress}>
-    <View style={{ flex: 1 }}>
+    <View style={styles.wrapperView}>
       <Text style={styles.buttonLabel}>{children}</Text>
     </View>
     <View>
@@ -22,4 +22,5 @@ const styles = StyleSheet.create({
   buttonLabel: {
     fontSize: 16,
   },
+  wrapperView: { flex: 1 },
 });
