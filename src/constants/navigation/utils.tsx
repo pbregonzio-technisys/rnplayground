@@ -12,6 +12,14 @@ export const tabBarProps = {
     height: 88,
     paddingTop: 12,
     borderRadius: 16,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 2,
+    elevation: 4,
   },
   tabBarActiveTintColor: '#E36414',
 };

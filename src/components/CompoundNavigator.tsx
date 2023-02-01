@@ -46,6 +46,17 @@ export const CompoundNavigator = () => {
   return (
     <NavigationContainer
       fallback={<Text>Loading…</Text>}
+      theme={{
+        dark: false,
+        colors: {
+          primary: '#E36414',
+          background: 'white',
+          card: 'white',
+          text: '#3b3b3b',
+          border: 'transparent',
+          notification: 'green',
+        },
+      }}
       documentTitle={{
         formatter: (options, route) =>
           `${options?.title ?? route?.name} - React Navigation Example`,
