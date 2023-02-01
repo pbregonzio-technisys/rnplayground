@@ -9,7 +9,7 @@ import { Icon } from '../../components/Icon';
 
 export const tabBarProps = {
   tabBarStyle: {
-    height: 88,
+    // height: 88,
     paddingTop: 12,
     borderRadius: 16,
     shadowColor: '#000',
@@ -41,6 +41,19 @@ export const colorfulHeaderProps = {
   headerTitleAlign: 'center',
   headerTitleStyle: {
     fontSize: 20,
+  },
+  headerTitleContainerStyle: {
+    marginBottom: 8,
+  },
+  headerLeftContainerStyle: {
+    marginBottom: 8,
+  },
+  headerRightContainerStyle: {
+    marginBottom: 8,
+  },
+  headerStyle: {
+    // height: 72, // ios
+    height: 28 + 72, // ios with inset
   },
   headerBackground: () => <ColorfulLinearGradient />,
   headerLeft: () => <DrawerTrigger />,
