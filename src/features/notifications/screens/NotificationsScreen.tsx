@@ -8,9 +8,30 @@ import {
   tabBarProps,
 } from '../../../constants/navigation/utils';
 import { Icon } from '../../../components/Icon';
+import { SafeContent } from '../../../components/SafeContent';
+import { SegmentedControl } from '../../../components/SegmentedControl/SegmentedControl';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const NotificationsScreen = () => {
-  return <ScreenContainer statusBarScheme="light" />;
+  const [_, setSelectedValue] = React.useState('Insights');
+  const insets = useSafeAreaInsets();
+
+  return (
+    <ScreenContainer statusBarScheme="light">
+      <SafeContent
+        style={{
+          paddingTop: 16,
+          paddingBottom: 24 + insets.bottom,
+          paddingRight: 24 + insets.right,
+          paddingLeft: 24 + insets.left,
+        }}>
+        <SegmentedControl
+          labels={['Insights', 'Alerts']}
+          onChange={(value) => setSelectedValue(value)}
+        />
+      </SafeContent>
+    </ScreenContainer>
+  );
 };
 
 NotificationsScreen.options = {

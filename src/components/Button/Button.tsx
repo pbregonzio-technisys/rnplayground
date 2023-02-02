@@ -46,7 +46,7 @@ const interpolationByTypeLookup = {
 };
 
 export const Button = ({
-  type = 'secondary',
+  type = 'terteary',
   children,
   onPress,
   disabled = false,

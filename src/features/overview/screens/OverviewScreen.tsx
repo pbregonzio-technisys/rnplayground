@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Icon } from '../../../components/Icon';
 import { SafeContent } from '../../../components/SafeContent';
@@ -13,16 +14,17 @@ import {
 import { OverviewMenu } from './components/OverviewMenu';
 
 export const OverviewScreen = () => {
+  const insets = useSafeAreaInsets();
+
   return (
     <ScreenContainer statusBarScheme="light">
       <SafeContent
         style={{
           paddingTop: 16,
           paddingBottom: 24,
-          paddingRight: 24,
-          paddingLeft: 24,
-        }}
-        edges={['right', 'left']}>
+          paddingRight: 24 + insets.right,
+          paddingLeft: 24 + insets.left,
+        }}>
         <OverviewMenu />
       </SafeContent>
     </ScreenContainer>

@@ -4,7 +4,7 @@ export const theme = {
   ButtonTextFontSize: 16,
   ButtonTextFontWeight: '600',
   ButtonTextTextAlign: 'center',
-  ButtonTextColorDisabled: '#757575',
+  ButtonTextColorDisabled: '#DBDBDB',
   ButtonBackgroundColorDisabled: '#F2F2F2',
   ButtonAnimationDuration: 200,
 

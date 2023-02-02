@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import { SegmentedControl } from './SegmentedControl';
 
-describe('SegmentedControl', () => {
+describe('SegmentedControl component', () => {
   it('renders the correct number of segments', () => {
     const labels = ['Segment 1', 'Segment 2', 'Segment 3'];
     const { queryAllByText } = render(

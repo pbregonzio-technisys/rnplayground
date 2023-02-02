@@ -7,27 +7,31 @@ import { ScreenContainer } from '../../../components/ScreenContainer';
 import { BOTTOM_TABS_NAVIGATOR_SCREENS } from '../../../constants/navigation/bottomTab';
 import { PUBLIC_STACK_NAVIGATOR_SCREENS } from '../../../constants/navigation/publicStack';
 import { AuthContext } from '../../../providers/AuthProvider';
-import { SegmentedControl } from '../../../components/SegmentedControl/SegmentedControl';
+import { BottomSheet } from '../../../components/BottomSheet/BottomSheet';
 
 export const WelcomeScreen = () => {
-  const [_, setSelectedValue] = React.useState('One');
+  const [visible, setVisible] = React.useState(false);
 
   return (
     <ScreenContainer name="Welcome screen" statusBarScheme="dark">
       <View style={styles.screenView} testID="welcome">
         <View style={styles.marginBottom}>
-          <SegmentedControl
-            labels={['One', 'Two', 'Three']}
-            onChange={(value) => setSelectedValue(value)}
-          />
+          <Button type="terteary" onPress={() => setVisible(true)}>
+            Select your prefered language
+          </Button>
         </View>
         <View style={styles.marginBottom}>
           <LogInButton />
         </View>
-        <View>
+        <View style={styles.marginBottom}>
           <ResetPasswordButton />
         </View>
       </View>
+      <BottomSheet
+        visible={visible}
+        onClose={() => setVisible(false)}
+        title="Select your prefered language"
+      />
     </ScreenContainer>
   );
 };
@@ -48,7 +52,6 @@ const LogInButton = () => {
   return (
     <Button
       type="primary"
-      disabled
       onPress={() => {
         setIsAuthenticated(true);
         setTimeout(
@@ -66,8 +69,6 @@ const ResetPasswordButton = () => {
   const { navigate } = useNavigation();
   return (
     <Button
-      type="terteary"
-      disabled
       onPress={() => {
         navigate(
           PUBLIC_STACK_NAVIGATOR_SCREENS.ResetPasswordStackNavigatorScreen

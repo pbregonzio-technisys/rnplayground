@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { SegmentedControlItem } from './SegmentedControlItem';
 import { theme } from './theme';
 
-describe('SegmentedControlItem', () => {
+describe('SegmentedControlItem component', () => {
   it('renders the correct label', () => {
     const label = 'Segment 1';
     const { getByText } = render(
