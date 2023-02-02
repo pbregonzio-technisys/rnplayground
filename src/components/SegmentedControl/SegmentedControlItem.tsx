@@ -52,12 +52,12 @@ export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
   React.useEffect(() => {
     if (!pressed) {
       progress.value = withTiming(0, {
-        duration: 200,
+        duration: theme.SegmentedControlItemAnimationDuration,
         easing: Easing.ease,
       });
     } else {
       progress.value = withTiming(1, {
-        duration: 150,
+        duration: theme.SegmentedControlItemAnimationDuration * 0.75,
         easing: Easing.ease,
       });
     }

@@ -3,7 +3,7 @@ export const theme = {
   SegmentedControlPadding: 4,
   SegmentedControlGap: 4,
   SegmentedControlBackgroundColor: '#eee',
-  SegmentedControlItemBackgroundColor: 'transparent',
+  SegmentedControlItemBackgroundColor: '#eee',
   SegmentedControlItemBackgroundColorPressed: '#DBDBDB',
   SegmentedControlItemBackgroundColorSelected: 'white',
   SegmentedControlItemBackgroundColorSelectedPressed: '#FFF7F2',
@@ -13,4 +13,5 @@ export const theme = {
   SegmentedControlItemTextTextAlign: 'center',
   SegmentedControlItemTextColor: '#3B3B3B',
   SegmentedControlItemTextColorSelected: '#E36414',
+  SegmentedControlItemAnimationDuration: 300,
 } as const;
