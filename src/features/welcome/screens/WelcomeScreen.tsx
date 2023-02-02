@@ -67,6 +67,7 @@ const ResetPasswordButton = () => {
   return (
     <Button
       type="terteary"
+      disabled
       onPress={() => {
         navigate(
           PUBLIC_STACK_NAVIGATOR_SCREENS.ResetPasswordStackNavigatorScreen

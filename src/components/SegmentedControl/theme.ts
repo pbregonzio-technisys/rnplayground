@@ -5,7 +5,7 @@ export const theme = {
   ButtonTextFontWeight: '600',
   ButtonTextTextAlign: 'center',
   ButtonTextColorDisabled: '#757575',
-  ButtonTextBackgroundColorDisabled: '#F2F2F2',
+  ButtonBackgroundColorDisabled: '#F2F2F2',
   ButtonAnimationDuration: 200,
 
   ButtonPrimaryBackgroundColor: '#E36414',
@@ -40,8 +40,8 @@ export const theme = {
   SegmentedControlItemTextColorSelected: '#E36414',
   SegmentedControlItemTextColorSelectedPressed: '#F97C2E',
   SegmentedControlItemAnimationDuration: 300,
-  SegmentedControlItemBackgroundColorDisabled: '',
-  SegmentedControlItemBackgroundColorSelectedDisabled: '',
-  SegmentedControlItemTextColorDisabled: '',
-  SegmentedControlItemTextColorSelectedDisabled: '',
+  SegmentedControlItemBackgroundColorDisabled: '#F2F2F2',
+  SegmentedControlItemBackgroundColorSelectedDisabled: 'white',
+  SegmentedControlItemTextColorDisabled: '#DBDBDB',
+  SegmentedControlItemTextColorSelectedDisabled: '#DBDBDB',
 } as const;

@@ -94,6 +94,8 @@ export const Button = ({
     }
   });
 
+  const styles = makeStyles(type);
+
   return (
     <Pressable
       onPressIn={!disabled ? () => setPressed(true) : undefined}
@@ -118,22 +120,26 @@ export const Button = ({
   );
 };
 
-const styles = StyleSheet.create({
-  pressable: {
-    padding: theme.ButtonPadding,
-    borderRadius: theme.ButtonBorderRadius,
-  },
-  text: {
-    fontSize: theme.ButtonTextFontSize,
-    fontWeight: theme.ButtonTextFontWeight,
-    textAlign: theme.ButtonTextTextAlign,
-  },
-  pressableDisabled: {
-    backgroundColor: theme.ButtonTextBackgroundColorDisabled,
-  },
-  textDisabled: {
-    color: theme.ButtonTextColorDisabled,
-  },
-});
+const makeStyles = (type: ButtonTypesType) =>
+  StyleSheet.create({
+    pressable: {
+      padding: theme.ButtonPadding,
+      borderRadius: theme.ButtonBorderRadius,
+    },
+    text: {
+      fontSize: theme.ButtonTextFontSize,
+      fontWeight: theme.ButtonTextFontWeight,
+      textAlign: theme.ButtonTextTextAlign,
+    },
+    pressableDisabled: {
+      backgroundColor:
+        type === 'terteary'
+          ? theme.ButtonTertearyBackgroundColor
+          : theme.ButtonBackgroundColorDisabled,
+    },
+    textDisabled: {
+      color: theme.ButtonTextColorDisabled,
+    },
+  });
 
-// Disabled for terteary buttons
+// Disabled styles for terteary buttons

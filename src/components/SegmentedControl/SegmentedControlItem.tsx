@@ -100,6 +100,7 @@ export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
       <Animated.View
         style={[
           styles.pressable,
+          selected && !disabled && styles.selectedDropShadow,
           disabled ? styles.pressableDisabled : animationPressableStyles,
         ]}>
         <Animated.Text
@@ -123,6 +124,16 @@ const makeStyles = (selected?: boolean) =>
       marginHorizontal: theme.SegmentedControlGap / 2,
       padding: theme.SegmentedControlItemPadding,
       borderRadius: theme.SegmentedControlItemBorderRadius,
+    },
+    selectedDropShadow: {
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 2,
+      elevation: 4,
     },
     text: {
       fontSize: theme.SegmentedControlItemTextFontSize,
