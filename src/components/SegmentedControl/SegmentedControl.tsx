@@ -23,7 +23,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
       {labels.map((label, index) => (
         <SegmentedControlItem
           key={label}
-          value={label}
+          label={label}
           selected={selectedIndex === index}
           onPress={() => {
             setSelectedIndex(index);

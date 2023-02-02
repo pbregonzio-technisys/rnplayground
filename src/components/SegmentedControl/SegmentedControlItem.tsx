@@ -16,14 +16,13 @@ import Animated, {
 import { theme } from './theme';
 
 type SegmentedControlItemProps = {
-  value: string;
-  onPress: (event: GestureResponderEvent) => void;
+  label: string;
   selected?: boolean;
-  testId?: string;
+  onPress: (event: GestureResponderEvent) => void;
 };
 
 export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
-  value,
+  label,
   selected,
   onPress,
 }) => {
@@ -67,15 +66,15 @@ export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
   return (
     <Pressable
       style={styles.wrapper}
-      accessibilityLabel={value}
+      accessibilityLabel={label}
       accessible={true}
-      key={value}
-      testID={value}
+      key={label}
+      testID={label}
       onPressIn={() => setPressed(true)}
       onPressOut={() => setPressed(false)}
       onPress={onPress}>
       <Animated.View style={[styles.pressable, tapAnimationStyles]}>
-        <Text style={[styles.text]}>{value}</Text>
+        <Text style={[styles.text]}>{label}</Text>
       </Animated.View>
     </Pressable>
   );
