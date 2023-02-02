@@ -18,27 +18,28 @@ import { theme } from './theme';
 type SegmentedControlItemProps = {
   value: string;
   onPress: (event: GestureResponderEvent) => void;
-  active?: boolean;
+  selected?: boolean;
+  testId?: string;
 };
 
 export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
   value,
-  active,
+  selected,
   onPress,
 }) => {
   const [pressed, setPressed] = React.useState(false);
   const progress = useSharedValue(0);
 
-  const styles = makeStyles(active);
+  const styles = makeStyles(selected);
 
   const tapAnimationStyles = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       progress.value,
       [0, 1],
-      active
+      selected
         ? [
-            theme.SegmentedControlItemBackgroundColorActive,
-            theme.SegmentedControlItemBackgroundColorActivePressed,
+            theme.SegmentedControlItemBackgroundColorSelected,
+            theme.SegmentedControlItemBackgroundColorSelectedPressed,
           ]
         : [
             theme.SegmentedControlItemBackgroundColor,
@@ -69,6 +70,7 @@ export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
       accessibilityLabel={value}
       accessible={true}
       key={value}
+      testID={value}
       onPressIn={() => setPressed(true)}
       onPressOut={() => setPressed(false)}
       onPress={onPress}>
@@ -79,7 +81,7 @@ export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
   );
 };
 
-const makeStyles = (active?: boolean) =>
+const makeStyles = (selected?: boolean) =>
   StyleSheet.create({
     wrapper: {
       flex: 1,
@@ -90,8 +92,8 @@ const makeStyles = (active?: boolean) =>
       borderRadius: theme.SegmentedControlItemBorderRadius,
     },
     text: {
-      color: active
-        ? theme.SegmentedControlItemTextColorActive
+      color: selected
+        ? theme.SegmentedControlItemTextColorSelected
         : theme.SegmentedControlItemTextColor,
       fontSize: theme.SegmentedControlItemTextFontSize,
       textAlign: theme.SegmentedControlItemTextTextAlign,

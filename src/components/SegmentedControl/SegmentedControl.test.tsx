@@ -8,7 +8,7 @@ describe('SegmentedControl', () => {
     const { queryAllByTestId } = render(
       <SegmentedControl labels={labels} onValueChange={jest.fn()} />
     );
-    const segments = queryAllByTestId('segment');
+    const segments = queryAllByTestId(/Segment/);
     expect(segments).toHaveLength(labels.length);
   });
 
@@ -18,7 +18,7 @@ describe('SegmentedControl', () => {
     const { queryAllByTestId } = render(
       <SegmentedControl labels={labels} onValueChange={onValueChange} />
     );
-    fireEvent.press(queryAllByTestId('segment')[1]);
+    fireEvent.press(queryAllByTestId(/Segment/)[1]);
     expect(onValueChange).toHaveBeenCalledWith(labels[1]);
   });
 });

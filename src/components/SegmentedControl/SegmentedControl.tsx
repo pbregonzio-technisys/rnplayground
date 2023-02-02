@@ -24,7 +24,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
         <SegmentedControlItem
           key={label}
           value={label}
-          active={selectedIndex === index}
+          selected={selectedIndex === index}
           onPress={() => {
             setSelectedIndex(index);
             onValueChange(label);
