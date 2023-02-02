@@ -43,4 +43,19 @@ describe('SegmentedControlItem', () => {
       backgroundColor: theme.SegmentedControlItemBackgroundColor,
     });
   });
+
+  it('does not trigger onPress when disabled', () => {
+    const onPress = jest.fn();
+    const label = 'Segment 1';
+    const { getByText } = render(
+      <SegmentedControlItem
+        onPress={onPress}
+        disabled
+        label="SegmentedControlItem"
+      />
+    );
+    const item = getByText(label);
+    fireEvent.press(item);
+    expect(onPress).not.toHaveBeenCalled();
+  });
 });

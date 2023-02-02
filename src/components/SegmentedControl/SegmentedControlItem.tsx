@@ -11,6 +11,7 @@ import Animated, {
 import { theme } from './theme';
 
 type SegmentedControlItemProps = {
+  disabled?: boolean;
   label: string;
   selected?: boolean;
   onPress: (event: GestureResponderEvent) => void;
@@ -42,6 +43,7 @@ const interpolationByTypeLookup = {
 export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
   label,
   selected,
+  disabled = false,
   onPress,
 }) => {
   const [pressed, setPressed] = React.useState(false);
@@ -82,18 +84,29 @@ export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
     }
   });
 
+  const styles = makeStyles(selected);
+
   return (
     <Pressable
       style={styles.wrapper}
       accessibilityLabel={label}
       accessible={true}
+      disabled={disabled}
       key={label}
       testID={label}
       onPressIn={() => setPressed(true)}
       onPressOut={() => setPressed(false)}
       onPress={onPress}>
-      <Animated.View style={[styles.pressable, animationPressableStyles]}>
-        <Animated.Text style={[styles.text, animationTextStyles]}>
+      <Animated.View
+        style={[
+          styles.pressable,
+          disabled ? styles.pressableDisabled : animationPressableStyles,
+        ]}>
+        <Animated.Text
+          style={[
+            styles.text,
+            disabled ? styles.textDisabled : animationTextStyles,
+          ]}>
           {label}
         </Animated.Text>
       </Animated.View>
@@ -101,17 +114,28 @@ export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
-  pressable: {
-    marginHorizontal: theme.SegmentedControlGap / 2,
-    padding: theme.SegmentedControlItemPadding,
-    borderRadius: theme.SegmentedControlItemBorderRadius,
-  },
-  text: {
-    fontSize: theme.SegmentedControlItemTextFontSize,
-    textAlign: theme.SegmentedControlItemTextTextAlign,
-  },
-});
+const makeStyles = (selected?: boolean) =>
+  StyleSheet.create({
+    wrapper: {
+      flex: 1,
+    },
+    pressable: {
+      marginHorizontal: theme.SegmentedControlGap / 2,
+      padding: theme.SegmentedControlItemPadding,
+      borderRadius: theme.SegmentedControlItemBorderRadius,
+    },
+    text: {
+      fontSize: theme.SegmentedControlItemTextFontSize,
+      textAlign: theme.SegmentedControlItemTextTextAlign,
+    },
+    pressableDisabled: {
+      backgroundColor: selected
+        ? theme.SegmentedControlItemBackgroundColorSelectedDisabled
+        : theme.SegmentedControlItemBackgroundColorDisabled,
+    },
+    textDisabled: {
+      color: selected
+        ? theme.SegmentedControlItemTextColorSelectedDisabled
+        : theme.SegmentedControlItemTextColorDisabled,
+    },
+  });

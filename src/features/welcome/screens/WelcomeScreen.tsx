@@ -48,6 +48,7 @@ const LogInButton = () => {
   return (
     <Button
       type="primary"
+      disabled
       onPress={() => {
         setIsAuthenticated(true);
         setTimeout(

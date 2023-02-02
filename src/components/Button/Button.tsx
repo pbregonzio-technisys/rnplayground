@@ -8,28 +8,40 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 
-type ButtonTypesType = keyof typeof interpolationByTypeLookup;
+import { theme } from '../SegmentedControl/theme';
 
-const theme = {
-  ButtonBorderRadius: 16,
-  ButtonPadding: 16,
-  ButtonTextFontSize: 16,
-  ButtonTextFontWeight: '600',
-  ButtonTextTextAlign: 'center',
-} as const;
+type ButtonTypesType = keyof typeof interpolationByTypeLookup;
 
 const interpolationByTypeLookup = {
   primary: {
-    backgroundColor: ['#E36414', '#F97C2E'],
-    color: ['white', 'white'],
+    backgroundColor: [
+      theme.ButtonPrimaryBackgroundColor,
+      theme.ButtonPrimaryBackgroundColorPressed,
+    ],
+    color: [
+      theme.ButtonPrimaryTextBackgroundColor,
+      theme.ButtonPrimaryTextBackgroundColorPressed,
+    ],
   },
   secondary: {
-    backgroundColor: ['#FFF7F2', 'white'],
-    color: ['#E36414', '#F97C2E'],
+    backgroundColor: [
+      theme.ButtonSecondaryBackgroundColor,
+      theme.ButtonSecondaryBackgroundColorPressed,
+    ],
+    color: [
+      theme.ButtonSecondaryTextBackgroundColor,
+      theme.ButtonSecondaryTextBackgroundColorPressed,
+    ],
   },
   terteary: {
-    backgroundColor: ['white', '#FFF7F2'],
-    color: ['#E36414', '#F97C2E'],
+    backgroundColor: [
+      theme.ButtonTertearyBackgroundColor,
+      theme.ButtonTertearyBackgroundColorPressed,
+    ],
+    color: [
+      theme.ButtonTertearyTextBackgroundColor,
+      theme.ButtonTertearyTextBackgroundColorPressed,
+    ],
   },
 };
 
@@ -37,11 +49,13 @@ export const Button = ({
   type = 'secondary',
   children,
   onPress,
+  disabled = false,
   ...rest
 }: {
   children: React.ReactNode;
   type?: ButtonTypesType;
   onPress: any;
+  disabled?: boolean;
 }) => {
   const [pressed, setPressed] = React.useState(false);
   const progress = useSharedValue(0);
@@ -69,12 +83,12 @@ export const Button = ({
   React.useEffect(() => {
     if (!pressed) {
       progress.value = withTiming(0, {
-        duration: 200,
+        duration: theme.ButtonAnimationDuration,
         easing: Easing.ease,
       });
     } else {
       progress.value = withTiming(1, {
-        duration: 150,
+        duration: theme.ButtonAnimationDuration * 0.75,
         easing: Easing.ease,
       });
     }
@@ -82,12 +96,21 @@ export const Button = ({
 
   return (
     <Pressable
-      onPressIn={() => setPressed(true)}
-      onPressOut={() => setPressed(false)}
-      onPress={onPress}
+      onPressIn={!disabled ? () => setPressed(true) : undefined}
+      onPressOut={!disabled ? () => setPressed(false) : undefined}
+      onPress={!disabled ? onPress : undefined}
+      disabled={disabled}
       {...rest}>
-      <Animated.View style={[styles.pressable, animationPressableStyles]}>
-        <Animated.Text style={[styles.text, animationTextStyles]}>
+      <Animated.View
+        style={[
+          styles.pressable,
+          disabled ? styles.pressableDisabled : animationPressableStyles,
+        ]}>
+        <Animated.Text
+          style={[
+            styles.text,
+            disabled ? styles.textDisabled : animationTextStyles,
+          ]}>
           {children}
         </Animated.Text>
       </Animated.View>
@@ -105,4 +128,12 @@ const styles = StyleSheet.create({
     fontWeight: theme.ButtonTextFontWeight,
     textAlign: theme.ButtonTextTextAlign,
   },
+  pressableDisabled: {
+    backgroundColor: theme.ButtonTextBackgroundColorDisabled,
+  },
+  textDisabled: {
+    color: theme.ButtonTextColorDisabled,
+  },
 });
+
+// Disabled for terteary buttons
