@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: theme.SegmentedControlBorderRadius,
     paddingVertical: theme.SegmentedControlPadding,
-    paddingHorizontal: theme.SegmentedControlItemGap / 2,
+    paddingHorizontal: theme.SegmentedControlGap / 2,
     backgroundColor: theme.SegmentedControlBackgroundColor,
   },
 });

@@ -1,6 +1,7 @@
 export const theme = {
   SegmentedControlBorderRadius: 16,
   SegmentedControlPadding: 4,
+  SegmentedControlGap: 4,
   SegmentedControlBackgroundColor: '#eee',
   SegmentedControlItemBackgroundColor: 'transparent',
   SegmentedControlItemBackgroundColorPressed: '#DBDBDB',
@@ -8,7 +9,6 @@ export const theme = {
   SegmentedControlItemBackgroundColorActivePressed: '#FFF7F2',
   SegmentedControlItemBorderRadius: 12,
   SegmentedControlItemPadding: 8,
-  SegmentedControlItemGap: 4,
   SegmentedControlItemTextFontSize: 16,
   SegmentedControlItemTextTextAlign: 'center',
   SegmentedControlItemTextColor: '#3B3B3B',

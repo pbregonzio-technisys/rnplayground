@@ -85,7 +85,7 @@ const makeStyles = (active?: boolean) =>
       flex: 1,
     },
     pressable: {
-      marginHorizontal: theme.SegmentedControlItemGap / 2,
+      marginHorizontal: theme.SegmentedControlGap / 2,
       padding: theme.SegmentedControlItemPadding,
       borderRadius: theme.SegmentedControlItemBorderRadius,
     },
