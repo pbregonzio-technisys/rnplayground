@@ -1,17 +1,27 @@
 import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '../../../components/Button';
 import { ScreenContainer } from '../../../components/ScreenContainer';
 import { BOTTOM_TABS_NAVIGATOR_SCREENS } from '../../../constants/navigation/bottomTab';
 import { PUBLIC_STACK_NAVIGATOR_SCREENS } from '../../../constants/navigation/publicStack';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { SegmentedControl } from '../../../components/SegmentedControl/SegmentedControl';
 
 export const WelcomeScreen = () => {
+  const [selectedValue, setSelectedValue] = React.useState('One');
+
   return (
     <ScreenContainer name="Welcome screen" statusBarScheme="dark">
       <View style={styles.screenView} testID="welcome">
+        <Text style={{ fontSize: 20, marginBottom: 20 }}>
+          Selected: {selectedValue}
+        </Text>
+        <SegmentedControl
+          values={['One', 'Two', 'Three']}
+          onValueChange={(value) => setSelectedValue(value)}
+        />
         <LogInButton />
         <ResetPasswordButton />
       </View>

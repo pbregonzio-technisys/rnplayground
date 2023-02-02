@@ -1,22 +1,27 @@
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
+import { SafeAreaView, EdgeInsets } from 'react-native-safe-area-context';
 
 export const SafeContent = ({
   children,
   scroll = false,
-  outerMargin,
+  edges,
   style,
+  mode,
 }: {
   children: React.ReactNode;
   scroll?: boolean;
-  outerMargin?: object;
+  edges?: EdgeInsets;
   style?: any;
+  mode?: any;
 }) => {
-  const Element = scroll ? ScrollView : React.Fragment;
-
+  const OuterElement = scroll ? ScrollView : React.Fragment;
+  const InnerElement = edges ? SafeAreaView : View;
   return (
-    <Element>
-      <View style={[outerMargin, style]}>{children}</View>
-    </Element>
+    <OuterElement>
+      <InnerElement style={style} mode={mode}>
+        {children}
+      </InnerElement>
+    </OuterElement>
   );
 };
