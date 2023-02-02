@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  Pressable,
-  StyleSheet,
-  GestureResponderEvent,
-} from 'react-native';
+import { Pressable, StyleSheet, GestureResponderEvent } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -21,6 +16,29 @@ type SegmentedControlItemProps = {
   onPress: (event: GestureResponderEvent) => void;
 };
 
+const interpolationByTypeLookup = {
+  default: {
+    backgroundColor: [
+      theme.SegmentedControlItemBackgroundColor,
+      theme.SegmentedControlItemBackgroundColorPressed,
+    ],
+    color: [
+      theme.SegmentedControlItemTextColor,
+      theme.SegmentedControlItemTextColorPressed,
+    ],
+  },
+  selected: {
+    backgroundColor: [
+      theme.SegmentedControlItemBackgroundColorSelected,
+      theme.SegmentedControlItemBackgroundColorSelectedPressed,
+    ],
+    color: [
+      theme.SegmentedControlItemTextColorSelected,
+      theme.SegmentedControlItemTextColorSelectedPressed,
+    ],
+  },
+};
+
 export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
   label,
   selected,
@@ -29,24 +47,25 @@ export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
   const [pressed, setPressed] = React.useState(false);
   const progress = useSharedValue(0);
 
-  const styles = makeStyles(selected);
-
-  const tapAnimationStyles = useAnimatedStyle(() => {
+  const animationPressableStyles = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       progress.value,
       [0, 1],
-      selected
-        ? [
-            theme.SegmentedControlItemBackgroundColorSelected,
-            theme.SegmentedControlItemBackgroundColorSelectedPressed,
-          ]
-        : [
-            theme.SegmentedControlItemBackgroundColor,
-            theme.SegmentedControlItemBackgroundColorPressed,
-          ]
+      interpolationByTypeLookup[selected ? 'selected' : 'default']
+        .backgroundColor
     );
 
     return { backgroundColor };
+  });
+
+  const animationTextStyles = useAnimatedStyle(() => {
+    const color = interpolateColor(
+      progress.value,
+      [0, 1],
+      interpolationByTypeLookup[selected ? 'selected' : 'default'].color
+    );
+
+    return { color };
   });
 
   React.useEffect(() => {
@@ -73,28 +92,26 @@ export const SegmentedControlItem: React.FC<SegmentedControlItemProps> = ({
       onPressIn={() => setPressed(true)}
       onPressOut={() => setPressed(false)}
       onPress={onPress}>
-      <Animated.View style={[styles.pressable, tapAnimationStyles]}>
-        <Text style={[styles.text]}>{label}</Text>
+      <Animated.View style={[styles.pressable, animationPressableStyles]}>
+        <Animated.Text style={[styles.text, animationTextStyles]}>
+          {label}
+        </Animated.Text>
       </Animated.View>
     </Pressable>
   );
 };
 
-const makeStyles = (selected?: boolean) =>
-  StyleSheet.create({
-    wrapper: {
-      flex: 1,
-    },
-    pressable: {
-      marginHorizontal: theme.SegmentedControlGap / 2,
-      padding: theme.SegmentedControlItemPadding,
-      borderRadius: theme.SegmentedControlItemBorderRadius,
-    },
-    text: {
-      color: selected
-        ? theme.SegmentedControlItemTextColorSelected
-        : theme.SegmentedControlItemTextColor,
-      fontSize: theme.SegmentedControlItemTextFontSize,
-      textAlign: theme.SegmentedControlItemTextTextAlign,
-    },
-  });
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+  pressable: {
+    marginHorizontal: theme.SegmentedControlGap / 2,
+    padding: theme.SegmentedControlItemPadding,
+    borderRadius: theme.SegmentedControlItemBorderRadius,
+  },
+  text: {
+    fontSize: theme.SegmentedControlItemTextFontSize,
+    textAlign: theme.SegmentedControlItemTextTextAlign,
+  },
+});

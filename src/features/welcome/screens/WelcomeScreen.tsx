@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 
-import { Button } from '../../../components/Button';
+import { Button } from '../../../components/Button/Button';
 import { ScreenContainer } from '../../../components/ScreenContainer';
 import { BOTTOM_TABS_NAVIGATOR_SCREENS } from '../../../constants/navigation/bottomTab';
 import { PUBLIC_STACK_NAVIGATOR_SCREENS } from '../../../constants/navigation/publicStack';
@@ -15,12 +15,18 @@ export const WelcomeScreen = () => {
   return (
     <ScreenContainer name="Welcome screen" statusBarScheme="dark">
       <View style={styles.screenView} testID="welcome">
-        <SegmentedControl
-          labels={['One', 'Two', 'Three']}
-          onValueChange={(value) => setSelectedValue(value)}
-        />
-        <LogInButton />
-        <ResetPasswordButton />
+        <View style={styles.marginBottom}>
+          <SegmentedControl
+            labels={['One', 'Two', 'Three']}
+            onChange={(value) => setSelectedValue(value)}
+          />
+        </View>
+        <View style={styles.marginBottom}>
+          <LogInButton />
+        </View>
+        <View>
+          <ResetPasswordButton />
+        </View>
       </View>
     </ScreenContainer>
   );
@@ -41,6 +47,7 @@ const LogInButton = () => {
   const { navigate } = useNavigation();
   return (
     <Button
+      type="primary"
       onPress={() => {
         setIsAuthenticated(true);
         setTimeout(
@@ -58,6 +65,7 @@ const ResetPasswordButton = () => {
   const { navigate } = useNavigation();
   return (
     <Button
+      type="terteary"
       onPress={() => {
         navigate(
           PUBLIC_STACK_NAVIGATOR_SCREENS.ResetPasswordStackNavigatorScreen
@@ -71,8 +79,11 @@ const ResetPasswordButton = () => {
 
 const styles = StyleSheet.create({
   screenView: {
-    marginTop: 200,
+    marginTop: 120,
     marginHorizontal: 24,
+  },
+  marginBottom: {
+    marginBottom: 20,
   },
 });
 

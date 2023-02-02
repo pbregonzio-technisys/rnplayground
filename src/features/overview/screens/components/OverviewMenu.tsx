@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-import { Button } from '../../../../components/Button';
+import { Button } from '../../../../components/Button/Button';
 import { PRIVATE_STACK_NAVIGATOR_SCREENS } from '../../../../constants/navigation/privateStack';
 import { LINK_ACCOUNT_STACK_NAVIGATOR_SCREENS } from '../../../linkAccount/screens/LinkAccountStackNavigatorScreen/constants/linkAccountStack';
 

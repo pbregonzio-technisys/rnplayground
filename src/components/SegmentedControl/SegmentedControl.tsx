@@ -7,13 +7,13 @@ import { theme } from './theme';
 type SegmentedControlProps = {
   labels: string[];
   initialIndex?: number;
-  onValueChange: (value: string) => void;
+  onChange: (value: string) => void;
 };
 
 export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   labels,
   initialIndex = 0,
-  onValueChange,
+  onChange,
 }) => {
   const [selectedIndex, setSelectedIndex] =
     React.useState<number>(initialIndex);
@@ -27,7 +27,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
           selected={selectedIndex === index}
           onPress={() => {
             setSelectedIndex(index);
-            onValueChange(label);
+            onChange(label);
           }}
         />
       ))}

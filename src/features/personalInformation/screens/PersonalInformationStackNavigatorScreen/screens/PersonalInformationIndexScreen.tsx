@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 
 import { ScreenContainer } from '../../../../../components/ScreenContainer';
 import { simpleHeaderProps } from '../../../../../constants/navigation/utils';
-import { Button } from '../../../../../components/Button';
+import { Button } from '../../../../../components/Button/Button';
 import { SafeContent } from '../../../../..//components/SafeContent';
 
 export const PersonalInformationIndexScreen = () => {

@@ -12,6 +12,8 @@ export const theme = {
   SegmentedControlItemTextFontSize: 16,
   SegmentedControlItemTextTextAlign: 'center',
   SegmentedControlItemTextColor: '#3B3B3B',
+  SegmentedControlItemTextColorPressed: '#3B3B3B',
   SegmentedControlItemTextColorSelected: '#E36414',
+  SegmentedControlItemTextColorSelectedPressed: '#F97C2E',
   SegmentedControlItemAnimationDuration: 300,
 } as const;
