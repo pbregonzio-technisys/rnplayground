@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { SegmentedControlItem } from './SegmentedControlItem';
 import { theme } from './theme';
 
-interface Props {
-  values: string[];
+type SegmentedControlProps = {
+  labels: string[];
+  initialIndex?: number;
   onValueChange: (value: string) => void;
-}
+};
 
-export const SegmentedControl: React.FC<Props> = ({
-  values,
+export const SegmentedControl: React.FC<SegmentedControlProps> = ({
+  labels,
+  initialIndex = 0,
   onValueChange,
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] =
+    React.useState<number>(initialIndex);
 
   return (
     <View style={styles.root}>
-      {values.map((value, index) => (
+      {labels.map((label, index) => (
         <SegmentedControlItem
-          key={value}
-          value={value}
+          key={label}
+          value={label}
           active={selectedIndex === index}
           onPress={() => {
             setSelectedIndex(index);
-            onValueChange(value);
+            onValueChange(label);
           }}
         />
       ))}

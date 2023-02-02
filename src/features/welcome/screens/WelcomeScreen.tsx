@@ -16,7 +16,7 @@ export const WelcomeScreen = () => {
     <ScreenContainer name="Welcome screen" statusBarScheme="dark">
       <View style={styles.screenView} testID="welcome">
         <SegmentedControl
-          values={['One', 'Two', 'Three']}
+          labels={['One', 'Two', 'Three']}
           onValueChange={(value) => setSelectedValue(value)}
         />
         <LogInButton />

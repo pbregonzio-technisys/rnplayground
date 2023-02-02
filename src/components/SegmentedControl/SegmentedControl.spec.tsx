@@ -4,21 +4,21 @@ import { SegmentedControl } from './SegmentedControl';
 
 describe('SegmentedControl', () => {
   it('renders the correct number of segments', () => {
-    const values = ['Segment 1', 'Segment 2', 'Segment 3'];
+    const labels = ['Segment 1', 'Segment 2', 'Segment 3'];
     const { queryAllByTestId } = render(
-      <SegmentedControl values={values} onValueChange={jest.fn()} />
+      <SegmentedControl labels={labels} onValueChange={jest.fn()} />
     );
     const segments = queryAllByTestId('segment');
-    expect(segments).toHaveLength(values.length);
+    expect(segments).toHaveLength(labels.length);
   });
 
   it('calls onValueChange when a segment is pressed', () => {
-    const values = ['Segment 1', 'Segment 2'];
+    const labels = ['Segment 1', 'Segment 2'];
     const onValueChange = jest.fn();
     const { queryAllByTestId } = render(
-      <SegmentedControl values={values} onValueChange={onValueChange} />
+      <SegmentedControl labels={labels} onValueChange={onValueChange} />
     );
     fireEvent.press(queryAllByTestId('segment')[1]);
-    expect(onValueChange).toHaveBeenCalledWith(values[1]);
+    expect(onValueChange).toHaveBeenCalledWith(labels[1]);
   });
 });
