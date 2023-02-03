@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 import { ScreenContainer } from '../../../components/ScreenContainer';
 import { Icon } from '../../../components/Icon';
@@ -7,6 +7,7 @@ import {
   colorfulHeaderProps,
   tabBarProps,
 } from '../../../constants/navigation/utils';
+import { AppBarActionButton } from '../../../components/AppBarActionButton';
 
 export const AccountsScreen = ({
   route,
@@ -28,11 +29,11 @@ AccountsScreen.options = {
   title: 'Accounts screen',
   tabBarLabel: 'Accounts',
   headerRight: () => (
-    <TouchableOpacity
-      style={styles.actionButton}
-      accessibilityLabel="More actions">
-      <Icon name="vertical-ellipsis" color="white" />
-    </TouchableOpacity>
+    <AppBarActionButton
+      styles={{ wrapper: styles.actionButton }}
+      iconName="vertical-ellipsis"
+      accessibilityLabel="More actions"
+    />
   ),
   tabBarIcon: ({ focused }: { focused: boolean }) => (
     <Icon name="wallet" color={focused ? '#E36414' : '#757575'} />
@@ -48,5 +49,5 @@ export type AccountsScreenParamsType = {
 };
 
 const styles = StyleSheet.create({
-  actionButton: { marginRight: 24, padding: 8 },
+  actionButton: { marginRight: 24 },
 });

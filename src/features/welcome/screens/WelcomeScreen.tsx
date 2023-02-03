@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Button } from '../../../components/Button/Button';
 import { ScreenContainer } from '../../../components/ScreenContainer';
@@ -8,24 +8,29 @@ import { BOTTOM_TABS_NAVIGATOR_SCREENS } from '../../../constants/navigation/bot
 import { PUBLIC_STACK_NAVIGATOR_SCREENS } from '../../../constants/navigation/publicStack';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { BottomSheet } from '../../../components/BottomSheet/BottomSheet';
+import { useTranslation } from 'react-i18next';
 
 export const WelcomeScreen = () => {
   const [visible, setVisible] = React.useState(false);
+  const { t } = useTranslation();
 
   return (
     <ScreenContainer name="Welcome screen" statusBarScheme="dark">
       <View style={styles.screenView} testID="welcome">
-        <View style={styles.marginBottom}>
-          <Button type="terteary" onPress={() => setVisible(true)}>
-            Select your prefered language
+        <View style={{ flexDirection: 'row', gap: 12 }}>
+          <View style={{ flex: 1 }}>
+            <Text>{t('title')}</Text>
+          </View>
+          <Button
+            type="secondary"
+            size="small"
+            onPress={() => setVisible(true)}
+            accessibilityLabel="Select your prefered language">
+            EN
           </Button>
         </View>
-        <View style={styles.marginBottom}>
-          <LogInButton />
-        </View>
-        <View style={styles.marginBottom}>
-          <ResetPasswordButton />
-        </View>
+        <LogInButton />
+        <ResetPasswordButton />
       </View>
       <BottomSheet
         visible={visible}
@@ -84,9 +89,7 @@ const styles = StyleSheet.create({
   screenView: {
     marginTop: 120,
     marginHorizontal: 24,
-  },
-  marginBottom: {
-    marginBottom: 20,
+    gap: 16,
   },
 });
 

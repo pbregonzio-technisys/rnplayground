@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   interpolateColor,
@@ -8,57 +8,66 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 
-import { theme } from '../SegmentedControl/theme';
-
-type ButtonTypesType = keyof typeof interpolationByTypeLookup;
-
-const interpolationByTypeLookup = {
-  primary: {
-    backgroundColor: [
-      theme.ButtonPrimaryBackgroundColor,
-      theme.ButtonPrimaryBackgroundColorPressed,
-    ],
-    color: [
-      theme.ButtonPrimaryTextBackgroundColor,
-      theme.ButtonPrimaryTextBackgroundColorPressed,
-    ],
-  },
-  secondary: {
-    backgroundColor: [
-      theme.ButtonSecondaryBackgroundColor,
-      theme.ButtonSecondaryBackgroundColorPressed,
-    ],
-    color: [
-      theme.ButtonSecondaryTextBackgroundColor,
-      theme.ButtonSecondaryTextBackgroundColorPressed,
-    ],
-  },
-  terteary: {
-    backgroundColor: [
-      theme.ButtonTertearyBackgroundColor,
-      theme.ButtonTertearyBackgroundColorPressed,
-    ],
-    color: [
-      theme.ButtonTertearyTextBackgroundColor,
-      theme.ButtonTertearyTextBackgroundColorPressed,
-    ],
-  },
-};
+import { theme as globalTheme } from '../SegmentedControl/theme';
+import type { ButtonPropsType } from './Button.types';
+import { makeStyles } from './Button.styles';
 
 export const Button = ({
   type = 'terteary',
+  size = 'medium',
+  styles: localStyles = {},
+  theme: localTheme = {},
   children,
   onPress,
   disabled = false,
+  accessibilityLabel,
   ...rest
-}: {
-  children: React.ReactNode;
-  type?: ButtonTypesType;
-  onPress: any;
-  disabled?: boolean;
-}) => {
+}: ButtonPropsType) => {
   const [pressed, setPressed] = React.useState(false);
   const progress = useSharedValue(0);
+
+  const interpolationByTypeLookup = {
+    primary: {
+      backgroundColor: [
+        localTheme.BackgroundColor || globalTheme.ButtonPrimaryBackgroundColor,
+        localTheme.BackgroundColorPressed ||
+          globalTheme.ButtonPrimaryBackgroundColorPressed,
+      ],
+      color: [
+        localTheme.TextBackgroundColor ||
+          globalTheme.ButtonPrimaryTextBackgroundColor,
+        localTheme.TextBackgroundColorPressed ||
+          globalTheme.ButtonPrimaryTextBackgroundColorPressed,
+      ],
+    },
+    secondary: {
+      backgroundColor: [
+        localTheme.BackgroundColor ||
+          globalTheme.ButtonSecondaryBackgroundColor,
+        localTheme.BackgroundColorPressed ||
+          globalTheme.ButtonSecondaryBackgroundColorPressed,
+      ],
+      color: [
+        localTheme.TextBackgroundColor ||
+          globalTheme.ButtonSecondaryTextBackgroundColor,
+        localTheme.TextBackgroundColorPressed ||
+          globalTheme.ButtonSecondaryTextBackgroundColorPressed,
+      ],
+    },
+    terteary: {
+      backgroundColor: [
+        localTheme.BackgroundColor || globalTheme.ButtonTertearyBackgroundColor,
+        localTheme.BackgroundColorPressed ||
+          globalTheme.ButtonTertearyBackgroundColorPressed,
+      ],
+      color: [
+        localTheme.TextBackgroundColor ||
+          globalTheme.ButtonTertearyTextBackgroundColor,
+        localTheme.TextBackgroundColorPressed ||
+          globalTheme.ButtonTertearyTextBackgroundColorPressed,
+      ],
+    },
+  };
 
   const animationPressableStyles = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
@@ -71,30 +80,44 @@ export const Button = ({
   });
 
   const animationTextStyles = useAnimatedStyle(() => {
-    const color = interpolateColor(
+    const textColor = interpolateColor(
       progress.value,
       [0, 1],
       interpolationByTypeLookup[type].color
     );
 
-    return { color };
+    return { color: textColor };
   });
 
   React.useEffect(() => {
     if (!pressed) {
       progress.value = withTiming(0, {
-        duration: theme.ButtonAnimationDuration,
+        duration: globalTheme.ButtonAnimationDuration,
         easing: Easing.ease,
       });
     } else {
       progress.value = withTiming(1, {
-        duration: theme.ButtonAnimationDuration * 0.75,
+        duration: globalTheme.ButtonAnimationDuration * 0.75,
         easing: Easing.ease,
       });
     }
   });
 
-  const styles = makeStyles(type);
+  const styles = makeStyles(globalTheme, type, size);
+
+  const TextElement =
+    typeof children === 'string'
+      ? ({ children: child }: { children: React.ReactNode }) => (
+          <Animated.Text
+            style={[
+              styles.text,
+              disabled ? styles.textDisabled : animationTextStyles,
+              localStyles.text,
+            ]}>
+            {child}
+          </Animated.Text>
+        )
+      : React.Fragment;
 
   return (
     <Pressable
@@ -102,44 +125,17 @@ export const Button = ({
       onPressOut={!disabled ? () => setPressed(false) : undefined}
       onPress={!disabled ? onPress : undefined}
       disabled={disabled}
+      style={localStyles.wrapper}
+      accessibilityLabel={accessibilityLabel}
       {...rest}>
       <Animated.View
         style={[
           styles.pressable,
           disabled ? styles.pressableDisabled : animationPressableStyles,
+          localStyles.pressable,
         ]}>
-        <Animated.Text
-          style={[
-            styles.text,
-            disabled ? styles.textDisabled : animationTextStyles,
-          ]}>
-          {children}
-        </Animated.Text>
+        <TextElement>{children}</TextElement>
       </Animated.View>
     </Pressable>
   );
 };
-
-const makeStyles = (type: ButtonTypesType) =>
-  StyleSheet.create({
-    pressable: {
-      padding: theme.ButtonPadding,
-      borderRadius: theme.ButtonBorderRadius,
-    },
-    text: {
-      fontSize: theme.ButtonTextFontSize,
-      fontWeight: theme.ButtonTextFontWeight,
-      textAlign: theme.ButtonTextTextAlign,
-    },
-    pressableDisabled: {
-      backgroundColor:
-        type === 'terteary'
-          ? theme.ButtonTertearyBackgroundColor
-          : theme.ButtonBackgroundColorDisabled,
-    },
-    textDisabled: {
-      color: theme.ButtonTextColorDisabled,
-    },
-  });
-
-// Disabled styles for terteary buttons

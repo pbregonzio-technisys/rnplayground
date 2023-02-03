@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { ScreenContainer } from '../../../components/ScreenContainer';
@@ -7,10 +7,10 @@ import {
   colorfulHeaderProps,
   tabBarProps,
 } from '../../../constants/navigation/utils';
-import { Icon } from '../../../components/Icon';
 import { SafeContent } from '../../../components/SafeContent';
 import { SegmentedControl } from '../../../components/SegmentedControl/SegmentedControl';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { AppBarActionButton } from '../../../components/AppBarActionButton';
 
 export const NotificationsScreen = () => {
   const [_, setSelectedValue] = React.useState('Insights');
@@ -44,15 +44,15 @@ NotificationsScreen.options = {
 const BackActionIcon = () => {
   const { goBack } = useNavigation();
   return (
-    <TouchableOpacity
-      style={styles.actionButton}
+    <AppBarActionButton
       onPress={goBack}
-      accessibilityLabel="go back">
-      <Icon name="left-arrow" color="white" />
-    </TouchableOpacity>
+      styles={{ wrapper: styles.actionButton }}
+      iconName="left-arrow"
+      accessibilityLabel="go back"
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  actionButton: { marginLeft: 16, padding: 8 },
+  actionButton: { marginLeft: 16 },
 });

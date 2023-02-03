@@ -27,12 +27,15 @@ const getGlyph = {
   wallet: WalletIcon,
 };
 
-export type IconProps = {
-  name: keyof typeof getGlyph;
+export type IconGlyphsType = keyof typeof getGlyph;
+
+export type IconPropsType = {
+  name: IconGlyphsType;
+  size?: number;
 } & SvgProps;
 
-export const Icon = ({ name, ...rest }: IconProps) => {
+export const Icon = ({ name, size = 24, ...rest }: IconPropsType) => {
   const Glyph = getGlyph[name];
 
-  return <Glyph {...rest} />;
+  return <Glyph {...rest} width={size} height={size} />;
 };

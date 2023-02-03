@@ -1,7 +1,9 @@
 export const theme = {
   ButtonBorderRadius: 16,
   ButtonPadding: 16,
+  ButtonSmallPadding: 12,
   ButtonTextFontSize: 16,
+  ButtonSmallTextFontSize: 12,
   ButtonTextFontWeight: '600',
   ButtonTextTextAlign: 'center',
   ButtonTextColorDisabled: '#DBDBDB',

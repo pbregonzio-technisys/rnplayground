@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { Icon } from '../../components/Icon';
+import { AppBarActionButton } from '../../components/AppBarActionButton';
 
 export const tabBarProps = {
   tabBarStyle: {
@@ -62,12 +62,12 @@ export const colorfulHeaderProps = {
 const DrawerTrigger = () => {
   const { toggleDrawer } = useNavigation<any>();
   return (
-    <TouchableOpacity
-      style={globalStyles.drawerTrigger}
+    <AppBarActionButton
+      styles={{ wrapper: globalStyles.drawerTrigger }}
       onPress={toggleDrawer}
-      accessibilityLabel="Menu">
-      <Icon name="menu" color="white" />
-    </TouchableOpacity>
+      iconName="menu"
+      accessibilityLabel="Menu"
+    />
   );
 };
 
@@ -98,9 +98,13 @@ const CloseAction = () => {
   const { canGoBack, goBack } = useNavigation();
 
   return canGoBack() ? (
-    <TouchableOpacity style={globalStyles.closeAction} onPress={goBack}>
-      <Icon name="left-arrow" color="#3b3b3b" />
-    </TouchableOpacity>
+    <AppBarActionButton
+      styles={{ wrapper: globalStyles.closeAction }}
+      onPress={goBack}
+      iconName="left-arrow"
+      accessibilityLabel="go back"
+      colorScheme="dark"
+    />
   ) : (
     <></>
   );
@@ -124,8 +128,8 @@ const makeStyles = (top: number) =>
 
 const globalStyles = StyleSheet.create({
   linearGradient: { flex: 1 },
-  closeAction: { padding: 8, marginLeft: 16 },
-  closeActionWrapper: { marginBottom: 8 },
-  drawerTrigger: { padding: 8, marginLeft: 16 },
+  closeAction: { marginLeft: 16 },
+  drawerTrigger: { marginLeft: 16 },
+  closeActionWrapper: { flexDirection: 'row', marginBottom: 8 },
   titleWrapper: { flexDirection: 'row' },
 });

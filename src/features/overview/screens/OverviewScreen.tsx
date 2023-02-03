@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -12,6 +12,7 @@ import {
   tabBarProps,
 } from '../../../constants/navigation/utils';
 import { OverviewMenu } from './components/OverviewMenu';
+import { AppBarActionButton } from '../../../components/AppBarActionButton';
 
 export const OverviewScreen = () => {
   const insets = useSafeAreaInsets();
@@ -45,18 +46,19 @@ OverviewScreen.options = {
 const NotificationActionIcon = () => {
   const { navigate } = useNavigation();
   return (
-    <TouchableOpacity
-      style={styles.actionButton}
+    <AppBarActionButton
       onPress={() =>
         navigate(
           PRIVATE_STACK_NAVIGATOR_SCREENS.NotificationsScreen.name as any
         )
-      }>
-      <Icon name="bell" color="white" />
-    </TouchableOpacity>
+      }
+      styles={{ wrapper: styles.actionButton }}
+      iconName="bell"
+      accessibilityLabel="notifications"
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  actionButton: { marginRight: 16, padding: 8 },
+  actionButton: { marginRight: 16 },
 });
