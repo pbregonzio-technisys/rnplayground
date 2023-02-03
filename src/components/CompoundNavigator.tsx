@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
+import { useFlipper } from '@react-navigation/devtools';
 import {
   createStackNavigator,
   HeaderStyleInterpolators,
@@ -39,10 +43,13 @@ const Drawer = createDrawerNavigator<DrawerNavigatorParams>();
 const BottomTabs = createBottomTabNavigator<BottomTabsNavigatorParams>();
 
 export const CompoundNavigator = () => {
+  const navigationRef = useNavigationContainerRef();
+  useFlipper(navigationRef);
   const { isAuthenticated } = React.useContext(AuthContext);
 
   return (
     <NavigationContainer
+      ref={navigationRef}
       fallback={<Text>Loading…</Text>}
       theme={{
         dark: false,
