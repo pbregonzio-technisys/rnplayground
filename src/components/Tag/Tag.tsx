@@ -11,6 +11,8 @@ import Animated, {
 import { theme } from './theme';
 import type { TagPropsType } from './Tag.types';
 import { makeStyles } from './Tag.styles';
+import { Button } from '../Button/Button';
+import { Icon } from '../Icon';
 
 export const Tag = ({
   type = 'default',
@@ -89,20 +91,6 @@ export const Tag = ({
 
   const styles = makeStyles(theme, type, size);
 
-  const TextElement =
-    typeof children === 'string'
-      ? ({ children: child }: { children: React.ReactNode }) => (
-          <Animated.Text
-            style={[
-              styles.text,
-              disabled ? styles.textDisabled : animationTextStyles,
-              localStyles.text,
-            ]}>
-            {child}
-          </Animated.Text>
-        )
-      : React.Fragment;
-
   return (
     <Pressable
       onPressIn={!disabled ? () => setPressed(true) : undefined}
@@ -118,7 +106,22 @@ export const Tag = ({
           disabled ? styles.pressableDisabled : animationPressableStyles,
           localStyles.pressable,
         ]}>
-        <TextElement>{children}</TextElement>
+        {/* Icono */}
+        <Icon name="menu" />
+
+        <Animated.Text
+          style={[
+            styles.text,
+            disabled ? styles.textDisabled : animationTextStyles,
+            localStyles.text,
+          ]}>
+          {children}
+        </Animated.Text>
+
+        {/* Accion de remover */}
+        <Button onPress={() => {}}>
+          <Icon name="menu" />
+        </Button>
       </Animated.View>
     </Pressable>
   );
