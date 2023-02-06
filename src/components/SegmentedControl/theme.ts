@@ -1,3 +1,5 @@
+import { theme as tagTheme } from '../Tag/theme';
+
 export const theme = {
   ButtonBorderRadius: 16,
   ButtonPadding: 16,
@@ -24,6 +26,8 @@ export const theme = {
   ButtonTertearyBackgroundColorPressed: '#FFF7F2',
   ButtonTertearyTextBackgroundColor: '#E36414',
   ButtonTertearyTextBackgroundColorPressed: '#F97C2E',
+
+  ...tagTheme,
 
   SegmentedControlBorderRadius: 16,
   SegmentedControlPadding: 4,
