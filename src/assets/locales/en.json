@@ -1,3 +1,7 @@
 {
-  "title": "Learn React"
+  "title": "Learn React",
+  "key_one": "item",
+  "key_other": "items",
+  "keyWithCount_one": "{{count}} item",
+  "keyWithCount_other": "{{count}} items"
 }
