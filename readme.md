@@ -3,5 +3,6 @@
 React native PoC repo.
 
 - navigation + screens
-- detox
-- modularity, modal + portal.
+- simple components
+- modularity: modal + portal.
+- e2e detox
