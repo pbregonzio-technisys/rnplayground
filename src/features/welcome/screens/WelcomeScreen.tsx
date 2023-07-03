@@ -9,6 +9,7 @@ import { PUBLIC_STACK_NAVIGATOR_SCREENS } from '../../../constants/navigation/pu
 import { AuthContext } from '../../../providers/AuthProvider';
 import { BottomSheet } from '../../../components/BottomSheet/BottomSheet';
 import { useTranslation } from 'react-i18next';
+import { Picklist } from '../../../components/Picklist/Picklist';
 
 export const WelcomeScreen = () => {
   const [visible, setVisible] = React.useState(false);
@@ -21,6 +22,7 @@ export const WelcomeScreen = () => {
           <View style={{ flex: 1 }}>
             <Text>{t('title')}</Text>
           </View>
+
           <Button
             type="secondary"
             size="small"
@@ -29,6 +31,10 @@ export const WelcomeScreen = () => {
             EN
           </Button>
         </View>
+        <Picklist
+          labels={['Light orange', 'Dark blue']}
+          onChange={(arr) => console.log(arr)}
+        />
         <LogInButton />
         <ResetPasswordButton />
       </View>
